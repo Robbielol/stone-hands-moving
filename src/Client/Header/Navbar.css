@@ -1,0 +1,144 @@
+/* Simple styles for the navigation bar */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    padding: 10px 20px;
+    z-index: 1000; /* Ensures the navbar stays on top of other elements */
+  }
+  
+  .navbar-logo img {
+    margin: -20px;
+    height: 60px; /* Adjust the height to control logo size */
+    width: auto;  /* Maintains aspect ratio */
+  }
+  
+/* Container for the entire navigation menu */
+.nav-menu {
+  position: fixed;
+  top: 0;
+  right: -300px; /* Start off-screen */
+  width: 300px;
+  height: 100vh;
+  background-color: #333;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+  transition: right 0.3s ease;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* When the menu is open */
+.nav-menu.open {
+  right: 0; /* Slide in from the right */
+}
+
+/* Styling for menu items */
+.nav-menu ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.nav-menu ul li {
+  margin: 20px 0;
+}
+
+.nav-menu ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 20px;
+  transition: color 0.3s;
+}
+
+.nav-menu ul li a:hover {
+  color: #ff0000;
+  font-weight: bold;
+}
+
+/* Hamburger button */
+.menu-button {
+  visibility: hidden;
+  font-size: 30px;
+  padding: 10px;
+  background: none;
+  border: none;
+  color: #333;
+  cursor: pointer;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1100; /* Make sure button is above everything else */
+}
+
+.menu-button:hover{
+  background-color: #333;
+}
+
+.menu-button.open{
+  color: #fff;
+}
+
+.menu-button.open:hover{
+  color: #333;
+  background-color: #fff;
+}
+
+/* Overlay to dim the background when the menu is open */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999; /* Underneath the menu but above the page content */
+}
+
+.sticky-menu{
+  margin: 0 1em;
+  justify-content: center; /* Initially absolute at the bottom of the section */
+  background-color: #f8f8f8;
+  border-radius: 20px;
+  display: flex; /* Align buttons horizontally */
+  transition: bottom 1s ease, opacity 1s ease; /* Smooth transition for bottom and opacity */
+  opacity: 0;
+  z-index: 1000;
+  visibility: hidden;
+}
+
+.sticky-menu.visible{
+  opacity: 1;
+  visibility: visible; /* Ensures it's no longer clickable */
+}
+
+@media (max-width: 1000px) {
+  .menu-button{
+    visibility: visible;
+  }
+
+  .navbar {
+    height: 3em;
+    flex-direction: column;
+    align-items: flex-start; /* Stack the logo and menu */
+  }
+
+  .navbar .social-media-links{
+    display: none;
+  }
+
+  .nav-menu.open .social-media-links{
+    display: flex;
+    gap: 20px
+  }
+
+  .sticky-menu{
+    display: none;
+  }
+}

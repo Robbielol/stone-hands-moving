@@ -1,0 +1,46 @@
+.App {
+  text-align: center;
+}
+
+.App body{
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  background-color: #333;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #333;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.Section{
+  min-height: 10em;
+}
+
+.Odd-background{
+  background-color: #333;
+}
+
+@media (max-width: 700px){
+  .App-header{
+      min-height: 80vh;
+  }
+}

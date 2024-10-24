@@ -1,0 +1,98 @@
+/* Container for the entire Google Reviews section */
+.reviews-container {
+  padding: 30px;
+  background-color: #333;
+  display: flex;
+  justify-content: center; /* Align items horizontally in the center */
+  align-items: center;     /* Align items vertically (optional, if needed) */
+  flex-direction: column;  /* Stack reviews vertically */}
+
+/* Title for the reviews section */
+.reviews-title {
+  font-size: 2.5rem;
+  color: #fff;
+  text-align: center;
+}
+
+/* Individual review card container in horizontal layout */
+.review-card {
+  flex: 0 0 auto; /* Prevent shrinking, take width based on content */
+  max-width: 1200px;
+  background-color: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  margin: 20px; /* Spacing between cards */
+  padding: 15px;
+  border-radius: 8px;
+  transition: box-shadow 0.3s ease;
+}
+
+.review-card:hover {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Review card header */
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.reviewer-identity{
+  display: flex;
+}
+
+.reviewer-photo {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  margin-right: 10px;
+}
+
+/* Reviewer name styling */
+.reviewer-name {
+  font-weight: bold;
+  font-size: 16px;
+  color: #333;
+  display: flex;
+  align-items: center;
+}
+
+/* Review rating stars */
+.review-rating {
+  color: #ffa500;
+  font-size: 26px;
+}
+
+/* Review text */
+.review-text {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #555;
+  padding: 0px 30px;
+  margin-top: 10px;
+}
+
+/* Date of the review */
+.review-date {
+  font-size: 12px;
+  color: #999;
+  margin-top: 10px;
+}
+
+.google-reviews-container {
+  display: flex;
+  justify-content: flex-end; /* Aligns the link to the right */
+  padding: 20px; /* Optional padding */
+}
+
+.google-reviews-link{
+  font-size: 1.5rem;
+  text-decoration: underline;
+  color: #fff;
+}
+
+.google-reviews-container :hover{
+  background-color: #700000;
+}

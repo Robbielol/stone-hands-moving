@@ -1,0 +1,64 @@
+.floating-menu {
+    position: absolute; /* Initially absolute at the bottom of the section */
+    bottom: -6%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #f8f8f8;
+    border-radius: 20px;
+    display: flex; /* Align buttons horizontally */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: top 1s ease, opacity 1s ease; /* Smooth transition for top and opacity */
+    opacity: 1;
+    z-index: 1000;
+  }
+  
+  /* Hidden state: Moves up by 20px and becomes invisible */
+  .floating-menu.hidden {
+    top: -20px;
+    opacity: 0;
+    visibility: hidden; /* Ensures it's no longer clickable */
+  }
+
+  /* Menu item wrapper */
+  .menu-item {
+    border-right: 2px solid black; /* Black line between each button */
+  }
+  
+  .menu-item:last-child {
+    border-right: none; /* Remove border from the last item */
+  }
+  
+  /* Style for each button */
+  .menu-item button {
+    width: 100%; /* Ensure buttons fill the container */
+    padding: 20px 45px;
+    font-size: 14px;
+    border-radius: 0px;
+    cursor: pointer;
+    background-color: #f8f8f8;
+    color: black;
+    border: none;
+    transition: background-color 0.3s ease;
+  }
+
+  .menu-item:first-child button{
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+  }
+
+  .menu-item:last-child button{
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+  }
+  
+  /* Hover effect for buttons */
+  .menu-item :hover {
+    background-color: #333;
+    color: #fff
+  }
+
+  @media (max-width: 1000px) {
+    .floating-menu{
+        visibility: hidden;
+    }
+  }
