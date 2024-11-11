@@ -14,6 +14,17 @@
   text-align: center;
 }
 
+.rating-summary {
+  display: flex;
+  align-items: center;
+}
+
+.total-reviews {
+  margin-right: 1rem;
+  font-size: 1.8rem;
+  color: #fff;
+}
+
 /* Individual review card container in horizontal layout */
 .review-card {
   flex: 0 0 auto; /* Prevent shrinking, take width based on content */
@@ -62,13 +73,13 @@
 /* Review rating stars */
 .review-rating {
   color: #ffa500;
-  font-size: 26px;
+  font-size: 1.8rem;
 }
 
 /* Review text */
 .review-text {
-  font-size: 14px;
-  line-height: 1.6;
+  font-size: 1em;
+  line-height: 1.4;
   color: #555;
   padding: 0px 30px;
   margin-top: 10px;
@@ -76,14 +87,29 @@
 
 /* Date of the review */
 .review-date {
-  font-size: 12px;
+  font-size: 0.75rem;
   color: #999;
   margin-top: 10px;
 }
 
+.see-more-btn {
+  background: none;
+  color: #da2c2c;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  text-decoration: underline;
+  padding: 0;
+}
+
+.see-more-btn:hover {
+  color: #da2c2c;
+}
+
 .google-reviews-container {
   display: flex;
-  justify-content: flex-end; /* Aligns the link to the right */
+  justify-content: center; /* Aligns the link to the right */
   padding: 20px; /* Optional padding */
 }
 
@@ -95,4 +121,31 @@
 
 .google-reviews-container :hover{
   background-color: #700000;
+}
+
+@media (max-width: 768px) {
+  .reviewer-name{
+    font-size: 1.4rem;
+  }
+
+  .review-card:first-child {
+    margin-top: 0;
+  }
+  
+  .review-text {
+    font-size: 1.2rem;
+    padding: 0;
+  }
+
+  .review-rating {
+    font-size: 1.6rem;
+  }
+
+  .review-date {
+    font-size: 1rem;
+  } 
+  
+  .google-reviews-container{
+    padding: 0 0 1rem 0;
+  }
 }

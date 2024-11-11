@@ -1,6 +1,7 @@
 import './aboutSection.css';
 import '../Contact/contactForm.css';
-import mockPicture from "../../Pictures/mock-picture-2.jpg"
+import mockPicture from "../../Pictures/Team.jpeg"
+import { AboutText } from '../../TextFile';
 
 function AboutSection(){
     return(

@@ -13,8 +13,10 @@
   }
   
   .navbar-logo img {
+    padding-left: 1rem;
     margin: -20px;
-    height: 60px; /* Adjust the height to control logo size */
+    min-height: 50px;
+    height: 2rem; /* Adjust the height to control logo size */
     width: auto;  /* Maintains aspect ratio */
   }
   
@@ -37,6 +39,7 @@
 
 /* When the menu is open */
 .nav-menu.open {
+  display: flex;
   right: 0; /* Slide in from the right */
 }
 
@@ -58,15 +61,15 @@
 }
 
 .nav-menu ul li a:hover {
-  color: #ff0000;
+  color: #da2c2c;
   font-weight: bold;
 }
 
 /* Hamburger button */
 .menu-button {
   visibility: hidden;
-  font-size: 30px;
-  padding: 10px;
+  font-size: 2em;
+  padding: 1rem;
   background: none;
   border: none;
   color: #333;
@@ -102,7 +105,7 @@
 }
 
 .sticky-menu{
-  margin: 0 1em;
+  margin: 0 1rem;
   justify-content: center; /* Initially absolute at the bottom of the section */
   background-color: #f8f8f8;
   border-radius: 20px;
@@ -120,13 +123,18 @@
 
 @media (max-width: 1000px) {
   .menu-button{
+    font-size: 1.8rem;
     visibility: visible;
+  }
+
+  .navbar-logo img{
+    height: 2.5rem;
   }
 
   .navbar {
     height: 3em;
     flex-direction: column;
-    align-items: flex-start; /* Stack the logo and menu */
+    align-items: flex-start; /* Stack the logo and menu */    
   }
 
   .navbar .social-media-links{
@@ -135,10 +143,43 @@
 
   .nav-menu.open .social-media-links{
     display: flex;
-    gap: 20px
+    gap: 20px;
+  }
+
+  .social-media-links .social-icon{
+    color: #fff;
   }
 
   .sticky-menu{
     display: none;
   }
+}
+
+@media (max-width: 768px) {
+    .menu-button{
+      font-size: 1.5em;
+    }
+
+    .navbar-logo img{
+      height: 3rem;
+    }
+
+    .navbar {
+      width: 100vw;
+    }
+
+    .nav-menu{
+      right: -90vw; /* Start off-screen */
+      width: 90vw;
+    }
+}
+
+@media (max-width: 320px) {
+  .menu-button{
+    font-size: 3em;
+  }
+
+  .navbar-logo img{
+    height: 4rem;
+    }
 }

@@ -6,16 +6,16 @@ import "./header.css"
 import '../../components.css'
 import Slideshow from './slideshow';
 
-function HeaderSection( {scrollIntoView} ) {
+function HeaderSection( {headerHeight, scrollIntoView} ) {
   return (
     <Router>
-      <div>
-        <Navbar scrollIntoView={scrollIntoView}/>
+      <div className="header-container">
+        <Navbar headerHeight={headerHeight} scrollIntoView={scrollIntoView}/>
         <Slideshow />
         <div className="logo">
             <img src={logo} alt="Logo"/>     
+            <button className='center-button' onClick={() => {scrollIntoView("contactSection");}}>Get a quote today</button>  
         </div>
-        <button className='center-button' onClick={() => {scrollIntoView("contactSection");}}>Get A Quote Today</button>
       </div>
     </Router>
   );

@@ -34,7 +34,7 @@
   
   .service-image {
     width: 100%;
-    height: 13em;
+    height: auto;
     border-radius: 10px;
     margin-bottom: 15px;
   }
@@ -50,15 +50,24 @@
     color: #666;
   }
 
-  @media (max-width: 1000px) {
+  @media (max-width: 1080px) {
     .services-grid {
       grid-template-columns: repeat(2, 1fr);
     }
   }
   
   /* Mobile: 1 column (1x6 layout) */
-  @media (max-width: 700px) {
+  @media (max-width: 768px) {
     .services-grid {
       grid-template-columns: repeat(1, 1fr);
+    }
+
+    .service-title {
+      margin-top: 1em;
+    }
+
+    .service-description {
+      font-weight: 450;
+      font-size: 1.2rem;
     }
   }

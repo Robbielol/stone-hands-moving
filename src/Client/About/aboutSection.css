@@ -1,9 +1,14 @@
-.section-container {
-    width: 100%;
+  .middle-section {
+    position: relative;
+    margin-top: -2rem;
+  }
+
+  .section-container {
+    width: 90%;
     max-width: 1200px;
     margin: 0 auto;
     text-align: center;
-    padding: 50px 20px;
+    padding: 3rem 1.5rem 0 1.5rem;
   }
   
   .section-title {
@@ -33,25 +38,31 @@
   
   .section-text p {
     color: #fff;
-    font-size: 1.2rem;
-    line-height: 1.6;
-    margin-bottom: 15px;
+    font-weight: 400;
+    font-size: 1.3rem;
+    line-height: 1.4;
+    margin-bottom: 10px;
   }
   
   /* For mobile responsiveness */
   @media (max-width: 768px) {
     .content-container {
+      margin: 1em;
       flex-direction: column;
+    }
+
+    .section-title{
+      font-size: 2rem;
     }
   
     .section-image, .section-text {
-      width: 80%;
-      max-width: none;
-      margin-right: 0;
-      text-align: center;
+      width: 100%;
+      max-width: 100%;
+      margin-right: 1em;
+      text-align: justify;
     }
-  
-    .section-text {
-      text-align: center;
+
+    .section-text p{
+      font-size: 1.2rem
     }
   }

@@ -2,7 +2,7 @@ button{
     min-height: 20px;
     min-width: auto;
     padding: 1% 1.5%;
-    background-color: #ff0000;
+    background-color: #da2c2c;
     color: white;
     border: none;
     border-radius: 5px;
@@ -12,11 +12,17 @@ button{
 }
 
 .center-button{
-    top: 70%;
-    left: 50%;
     position: absolute;
-    transform: translate(-50%, -50%);
+    top: 85%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Center the button over the image */
     z-index: 20;
+    cursor: pointer;
+    white-space: nowrap; /* Prevents text from wrapping */
+    /*overflow: hidden; /* Ensures text is contained */
+    text-overflow: ellipsis; /* Adds an ellipsis if text overflows */
+    opacity: 1;
+    padding: 0.5rem;
 }
 
 button:hover {
@@ -26,21 +32,25 @@ button:hover {
 
 /* Logo positioning - fixed on top of slideshow */
 .logo {
-
+    max-width: 100%; /* Keep responsive */
+    height: auto;
+    display: flex;
+    border-radius: 8px; /* Optional */
     position: absolute;
-    top: 50%;
+    justify-content: center;
+    align-items: center;
     left: 50%;
-    opacity: 0.7;
-    transform: translate(-50%, -50%); /* Center horizontally and vertically */
-    z-index: 10; /* Ensure it appears on top of the slideshow */
+    top: 50%;
+    transform: translate(-50%, -50%); /* Center the image */
 }
   
 .logo img {
     border-radius: 30%;
-    background-color: whitesmoke;
+    opacity: 0.7;
+    position: relative;
     max-width: 400px;
     min-width: 300px;
-    width: 100%;
+    width: 10%;
     height: auto;
 }
 
@@ -58,7 +68,7 @@ button:hover {
   }
   
   .social-icon:hover {
-    color: #ff0000; /* Change color on hover (customize per brand color) */
+    color: #da2c2c; /* Change color on hover (customize per brand color) */
   }
   
   a {
@@ -66,20 +76,9 @@ button:hover {
     color: #fff;
   }
 
-@media (max-width: 1000px){
-    .social-icon{
-        color: #fff;
+  @media (max-width: 768px) {
+    a {
+        margin: 0.5rem;
+        font-size: 1.4rem;
     }
 }
-
-@media (max-width: 700px){
-
-    .center-button{
-        top: 66%;
-    }
-
-    .logo{
-        opacity: 1;
-    }
-}
-

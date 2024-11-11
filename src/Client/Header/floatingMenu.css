@@ -1,11 +1,12 @@
 .floating-menu {
     position: absolute; /* Initially absolute at the bottom of the section */
-    bottom: -6%;
-    left: 50%;
+    top: 0;
+    left: 50%; 
     transform: translateX(-50%);
     background-color: #f8f8f8;
     border-radius: 20px;
-    display: flex; /* Align buttons horizontally */
+    display: flex;
+    justify-content: center;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     transition: top 1s ease, opacity 1s ease; /* Smooth transition for top and opacity */
     opacity: 1;

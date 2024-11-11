@@ -5,7 +5,7 @@ import logo from '../../Pictures/stoneHandsMovingLogo.png'
 import SocialMediaLinks from '../../socialMedia';
 import MenuOptions from '../../menuOptions';
 
-const Navbar = ({scrollIntoView}) => {
+const Navbar = ({headerHeight, scrollIntoView}) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const menuRef = useRef(null);
@@ -17,7 +17,7 @@ const Navbar = ({scrollIntoView}) => {
       const menu = menuRef.current;
       
       // When scrolling down, show the menu if it's within 70px from the top NEEDS TO BE CHANGED TO DYNAMIC VALUE
-      if (currentScrollY > 600) {
+      if (currentScrollY > headerHeight) {
         setIsVisible(true);
       } 
       // When scrolling up, hide the menu again
@@ -34,7 +34,7 @@ const Navbar = ({scrollIntoView}) => {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, []);
+  }, [headerHeight]);
 
   // Toggle the menu when button is clicked
   const toggleMenu = () => {

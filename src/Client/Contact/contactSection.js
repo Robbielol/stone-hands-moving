@@ -71,10 +71,8 @@ const ContactSection = () => {
       <h2>Contact Us</h2>
       <div className="contact-container">
         <div className="contact-block">
-          <p>At Stone-Hands Moving, we specialize in providing seamless, stress-free moving services across Vancouver. Our experienced, fully insured team handles both residential and commercial moves with care and efficiency.
-            We offer personalized service, using modern equipment to meet your unique needs, whether it's local or long-distance. From packing to storage, our goal is to make your move as easy as possible.
-            Trust Stone-Hands Moving for a smooth, reliable move every time.</p>
-          <a href="tel:+1234567890">
+          {ContactUsText()}
+          <a href="tel:+16048284860">
             <button className='submit-button'>Call Us</button>
           </a>
         </div>

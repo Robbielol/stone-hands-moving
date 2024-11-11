@@ -9,13 +9,35 @@ const app = express();
 const port = process.env.PORT || 4000;
 const apiKey = process.env.SHM_APP_GOOGLE_API_KEY; 
 
-app.use(cors());
+const fs = require('fs');
+const util = require('util');
+
+const logFile = fs.createWriteStream('server.log', { flags: 'a' });
+const logStdout = process.stdout;
+
+console.log = function (...args) {
+  logFile.write(util.format(...args) + '\n');
+  logStdout.write(util.format(...args) + '\n');
+};
+
+app.use(cors(({
+  origin: function (origin, callback) {
+    // Allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) return callback(null, true);
+    if (origin.includes("stonehandsmoving.com")) {
+      const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
+      return callback(new Error(msg), false);
+    }
+    return callback(null, true);
+  }
+})));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // Proxy route to forward requests to Google Places API
 app.get('/api/reviews', async (req, res) => {
+  console.log("Fetching reviews...");
   const placeId = process.env.SHM_APP_GOOGLE_PLACE_ID;
   try {
     const response = await axios.get(
@@ -30,6 +52,7 @@ app.get('/api/reviews', async (req, res) => {
     );
     res.json(response.data); // Send data back to frontend
   } catch (error) {
+    console.log("Review data retrieval failed...");
     console.error('Error fetching Google reviews:', error);
     res.status(500).send('Error fetching reviews');
   }
@@ -37,6 +60,12 @@ app.get('/api/reviews', async (req, res) => {
 
 // Route for sending email
 app.post('/api/send-email', async (req, res) => {
+  console.log("Posting email...");
+  if (req.body !== null){
+    console.log("Email execution failed (Empty)...");
+    res.status(500).json({ success: false, message: 'Internal Server Error' });
+    return;
+  }
   const { fullName, email, date, origin, destination, workloadDescription } = req.body;
   try {
     // Your Nodemailer logic here
@@ -49,7 +78,7 @@ app.post('/api/send-email', async (req, res) => {
         pass: process.env.SHM_APP_SMTP_PASS, // Your email password
       }
     });
-
+    console.log("Generating email...");
     let mailOptions = {
       from: email,
       to: 'info@stonehandsmoving.com',
@@ -61,7 +90,7 @@ app.post('/api/send-email', async (req, res) => {
       <p><strong>${workloadDescription}.</strong></p> <br/><br/>
       <p>If this job interests you please reply to this email: <strong>${email}</strong>/p>`
     };
-
+    
     await transporter.sendMail(mailOptions);
 
     res.status(200).json({ success: true, message: 'Email sent successfully!' });

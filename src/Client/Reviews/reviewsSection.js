@@ -4,12 +4,16 @@ import './reviewsSection.css'
 
 const ReviewsSection = () => {
   const googleSearchLink = process.env.REACT_APP_GOOGLE_REVIEWS_LINK;
-  const [reviews, setReviews] = useState([]);
+  const [googleReviews, setGoogleReviews] = useState([]);
+  const [totalReviews, setTotalReviews] = useState(Number);
+  const [totalRating, setTotalRating] = useState(Number);
 
   const fetchGoogleReviews = async () => {
     try {
       const response = await axios.get('/api/reviews');
-      setReviews(response.data.result.reviews);
+      setGoogleReviews(response.data.result.reviews);
+      setTotalReviews(response.data.result.user_ratings_total);
+      setTotalRating(response.data.result.rating);
     } catch (error) {
       console.error('Error fetching Google reviews:', error);
     }
@@ -36,13 +40,32 @@ const ReviewsSection = () => {
     );
   };
 
-  const MoreReviews = () => {
+  const Review = ({ reviewText }) => {
+    const [isExpanded, setIsExpanded] = useState(false);
+    const maxChars = 100; // Adjust this to how much text you want to show initially
+  
+    const handleToggle = () => {
+      setIsExpanded(!isExpanded);
+    };
+  
+    return (
+      <div className="review-text">
+        <p>
+          {isExpanded ? reviewText : `${reviewText.slice(0, maxChars)}...`}
+        </p>
+        <button onClick={handleToggle} className="see-more-btn">
+          {isExpanded ? 'See Less' : 'See More'}
+        </button>
+      </div>
+    );
+  };
 
+  const MoreReviews = () => {
     return(
       <div className='google-reviews-container'>
         <button>
           <a target="_blank" rel="noopener noreferrer" href={googleSearchLink}>
-            View Google Reviews Here
+            View More Reviews
           </a>
         </button>
       </div>
@@ -52,10 +75,15 @@ const ReviewsSection = () => {
   return (
     <div className="reviews-container">
       <h2 className="reviews-title">Google Reviews</h2>
+      <div className="rating-summary">
+          <span className="total-reviews">{totalReviews} reviews </span>
+          <span className="review-rating">{totalRating ? totalRating.toFixed(1) : "N/A" }</span>
+          <span className="review-rating">&#9733;</span> {/* Star icon */}
+        </div>
       <div className="reviews-slider">
         <div className="reviews-container">
           <div className="reviews-slider">
-            {reviews.map((review, index) => (
+            {googleReviews.map((review, index) => (
               <div key={index} className="review-card">
                 <div className="review-header">
                   <div className="reviewer-identity">
@@ -70,7 +98,7 @@ const ReviewsSection = () => {
                   </div>
                   <StarRating rating={review.rating} />
                 </div>
-                <p className="review-text">{review.text}</p>
+                  <Review reviewText={review.text} />
                 <div className="review-date">
                   {new Date(review.time * 1000).toLocaleDateString()}
                 </div>

@@ -4,7 +4,7 @@
     position: relative;
     width: 100%;
     height: auto; /* Fixed height for the slideshow */
-    overflow: hidden; /* Hide overflow for the sliding effect */
+    /*overflow: hidden; /* Hide overflow for the sliding effect */
   }
   
   /* Slideshow container - full width and fixed height */
@@ -37,8 +37,25 @@
     object-fit: cover; /* Ensure images maintain aspect ratio and cover the area */
   }
 
-  @media (max-width: 700px){
-    .slideshow-wrapper{
-        visibility: hidden;
+  @media (max-width: 768px){
+    .slideshow-wrapper {
+      width: 100%;
+      max-width: 600px;
+      margin: auto;
+      padding: 10px;
+      /*overflow: hidden; */
     }
-}
+
+    .slide{
+      width: 100vw;
+    }
+  
+    .slide img {
+      width: 100%;
+      height: 1000px; /* Automatically adjust for smaller screens */
+      max-height: 90vh; /* Further height limit on mobile */
+      object-fit: cover;
+      object-position: center;
+      border-radius: 20px; /* Rounded edges for individual images */
+    }
+  }
