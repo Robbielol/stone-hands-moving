@@ -24,7 +24,6 @@ const Slideshow = () => {
             setImageSrc([phoneSlidePicture1, phoneSlidePicture2, phoneSlidePicture3, phoneSlidePicture4]); // Directory for smaller screens
           }
         };
-        console.log(imageSrc)
         // Initial call to set image source
         updateImageSrc();
     
@@ -60,7 +59,6 @@ const Slideshow = () => {
                     </div>
                     ))}
                 </div>
-                ))}
             </div>
             <div className="phone-slideshow-wrapper">
                 <div className="slideshow-container">

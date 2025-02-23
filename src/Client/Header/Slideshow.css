@@ -1,10 +1,15 @@
 /* Slideshow wrapper to contain both logo and slideshow */
-.slideshow-wrapper {
+  .slideshow-wrapper {
     visibility: visible;
     position: relative;
     width: 100%;
     height: auto; /* Fixed height for the slideshow */
     /*overflow: hidden; /* Hide overflow for the sliding effect */
+  }
+
+  .phone-slideshow-wrapper{
+    display: none;
+    visibility: hidden;
   }
   
   /* Slideshow container - full width and fixed height */

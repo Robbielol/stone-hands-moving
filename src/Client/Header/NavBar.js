@@ -14,7 +14,6 @@ const Navbar = ({headerHeight, scrollIntoView}) => {
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      const menu = menuRef.current;
       
       // When scrolling down, show the menu if it's within 70px from the top NEEDS TO BE CHANGED TO DYNAMIC VALUE
       if (currentScrollY > headerHeight) {

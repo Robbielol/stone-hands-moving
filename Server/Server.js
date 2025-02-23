@@ -6,7 +6,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 
 const app = express();
-const port = process.env.PORT || 4000;
+const port = 4001;
 const apiKey = process.env.SHM_APP_GOOGLE_API_KEY; 
 
 const fs = require('fs');
@@ -45,7 +45,7 @@ app.get('/api/reviews', async (req, res) => {
       {
         params: {
           place_id: placeId,
-          fields: 'reviews',
+          fields: 'reviews, rating, user_ratings_total',
           key: apiKey,
         },
       }
@@ -61,34 +61,41 @@ app.get('/api/reviews', async (req, res) => {
 // Route for sending email
 app.post('/api/send-email', async (req, res) => {
   console.log("Posting email...");
-  if (req.body !== null){
+  if (Object.keys(req.body).length === 0){
     console.log("Email execution failed (Empty)...");
     res.status(500).json({ success: false, message: 'Internal Server Error' });
     return;
   }
-  const { fullName, email, date, origin, destination, workloadDescription } = req.body;
+  const { fullName, phoneNumber, email, date, origin, destination, workloadDescription } = req.body;
   try {
     // Your Nodemailer logic here
     let transporter = nodemailer.createTransport({
-      host: 'smtp.privateemail.com', // Replace with your SMTP host
-      port: 587, // Use 465 for SSL or 587 for TLS/STARTTLS
-      secure: false, // Use true for 465, false for other ports
+      host: process.env.SHM_APP_SMTP_HOST, // Replace with your SMTP host
+      port: 465,
+      secure: true,
       auth: {
-        user: 'info@stonehandsmoving.com', // Your email address
-        pass: process.env.SHM_APP_SMTP_PASS, // Your email password
-      }
+        user: process.env.SHM_APP_SMTP_USER,
+        pass: process.env.SHM_APP_SMTP_PASS,
+      },
+      dkim: {
+        domainName: 'stonehandsmoving.com',
+        keySelector: 'default',
+        privateKey: process.env.SHM_APP_SMTP_PRIVATE_KEY,
+      },
     });
     console.log("Generating email...");
     let mailOptions = {
       from: email,
-      to: 'info@stonehandsmoving.com',
+      to: process.env.SHM_APP_SMTP_USER,
       subject: `New moving request from ${fullName} on ${date}`,
       html: `<p><strong>${fullName}</strong> wants to employ you for a moving job on this date <strong>${date}</strong>.</p>
       <p>The location of origin is:<strong> ${origin}</strong></p>
       <p>The destination location is:<strong> ${destination}</strong></p>'
       <p>This is a description of what they would like to transport:</p>
       <p><strong>${workloadDescription}.</strong></p> <br/><br/>
-      <p>If this job interests you please reply to this email: <strong>${email}</strong>/p>`
+      <p>If this job interests you please reply to this email: <strong>${email}</strong>/p>
+      <p>This was the mobile number of the customer: ${phoneNumber} (If blank, number was NOT provided)`,      
+      replyTo: email
     };
     
     await transporter.sendMail(mailOptions);

@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router} from 'react-router-dom';
 import Navbar from './NavBar';
 import logo from '../../Pictures/stoneHandsMoving.png'
 import "./header.css"
