@@ -10,17 +10,37 @@ const ReviewsSection = () => {
 
   const fetchGoogleReviews = async () => {
     try {
-      const response = await axios.get('/api/reviews');
-      setGoogleReviews(response.data.result.reviews);
-      setTotalReviews(response.data.result.user_ratings_total);
-      setTotalRating(response.data.result.rating);
+      let response;
+      //Read Reviews File
+      response = await axios.get('/api/read-reviews');
+
+      if(response?.data !== undefined){
+        if(Object.keys(response.data).includes('reviews')){
+          return response.data;
+        }
+      }
+
+      console.log('Going here');
+      //Get Reviews from google
+      response = await axios.get('/api/reviews');
+
+      //Write Reviews to file
+      await axios.post('/api/write-reviews', response.data.result);
+      return response.data.result;
     } catch (error) {
       console.error('Error fetching Google reviews:', error);
     }
   };
 
-  useEffect(() => {
-    fetchGoogleReviews();
+  useEffect( () => {
+    async function GetReviews() {
+      const response = await fetchGoogleReviews();
+      //Assign response to variables
+      setGoogleReviews(response.reviews);
+      setTotalReviews(response.user_ratings_total);
+      setTotalRating(response.rating);
+    }
+    GetReviews();
   }, []);
 
   const StarRating = ({ rating }) => {

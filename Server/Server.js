@@ -10,8 +10,10 @@ const port = 4001;
 const apiKey = process.env.SHM_APP_GOOGLE_API_KEY; 
 
 const fs = require('fs');
+const path = require('path');
 const util = require('util');
 
+const filePath = path.join(__dirname, 'reviews.json');
 const logFile = fs.createWriteStream('server.log', { flags: 'a' });
 const logStdout = process.stdout;
 
@@ -35,6 +37,41 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+//Read Reviews in from json file
+app.get('/api/read-reviews', async (req, res) => {
+  console.log("Reading reviews file...");
+  try{
+    //Reading file content 
+    const fileContent = fs.readFileSync(filePath, 'utf-8');
+
+    //Checking if file is empty or not
+    if(fileContent.trim() === ''){
+      console.log('Reviews file has no data')
+      return res.status(204).send('File has no data');
+    }
+       
+    //Parse file into JSON
+    const reviews = JSON.parse(fileContent);
+
+    //Checking if date on file is 7 days in past
+    const dateOnFile = new Date(reviews.Date);
+
+    //Expired date calculating 7 days as milliseconds
+    const expiredDate = new Date(dateOnFile.getTime() + (7 * 24 * 60 * 60 * 1000));
+
+    if(expiredDate <= Date.now()){
+      console.log('Review data needs to be updated...');
+      return res.status(204).send('Data needs updating');
+    }
+
+    console.log('Review data retreived from file.');
+    res.status(200).json(reviews);
+  }catch(error){
+    console.error(error);
+    res.status(500).send(`Error reading reviews: ${error}`);
+  }
+});
+
 // Proxy route to forward requests to Google Places API
 app.get('/api/reviews', async (req, res) => {
   console.log("Fetching reviews...");
@@ -45,7 +82,7 @@ app.get('/api/reviews', async (req, res) => {
       {
         params: {
           place_id: placeId,
-          fields: 'reviews, rating, user_ratings_total',
+          fields: 'reviews,rating,user_ratings_total',
           key: apiKey,
         },
       }
@@ -58,11 +95,30 @@ app.get('/api/reviews', async (req, res) => {
   }
 });
 
+//Writing reiviews to file
+app.post('/api/write-reviews', async (req, res) => {
+  console.log("Writing reviews to file...");
+  //Check request body for correct data type
+  const reviews = req.body;
+  if(!reviews){
+    return res.status(400).send("Data sent is incorrect.");
+  }
+  try{
+    reviews.Date = Date.now();
+    fs.writeFileSync(filePath, JSON.stringify(reviews, null, 2));
+    console.log("Reviews writtenn to file.");
+    res.status(200).send("Reviews updated on file successfully");
+  }catch(error){
+    console.error(error);
+    res.status(500).send(`Error writing reviews: ${error}`);
+  }
+})
+
 // Route for sending email
 app.post('/api/send-email', async (req, res) => {
   console.log("Posting email...");
   if (Object.keys(req.body).length === 0){
-    console.log("Email execution failed (Empty)...");
+    console.error("Email execution failed (Empty)...");
     res.status(500).json({ success: false, message: 'Internal Server Error' });
     return;
   }
