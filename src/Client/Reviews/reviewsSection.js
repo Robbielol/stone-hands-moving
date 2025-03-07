@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import './reviewsSection.css'
+import { unstable_noStore } from 'next/cache';
+import './reviewsSection.css';
 
 const ReviewsSection = () => {
-  const googleSearchLink = process.env.REACT_APP_GOOGLE_REVIEWS_LINK;
+  const googleSearchLink = process.env.NEXT_PUBLIC_GOOGLE_REVIEWS_LINK;
   const [googleReviews, setGoogleReviews] = useState([]);
   const [totalReviews, setTotalReviews] = useState(Number);
   const [totalRating, setTotalRating] = useState(Number);
 
   const fetchGoogleReviews = async () => {
+    unstable_noStore();
     try {
       let response;
       //Read Reviews File
@@ -20,7 +22,6 @@ const ReviewsSection = () => {
         }
       }
 
-      console.log('Going here');
       //Get Reviews from google
       response = await axios.get('/api/reviews');
 

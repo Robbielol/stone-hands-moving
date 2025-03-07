@@ -1,4 +1,4 @@
-import React, {useRef, useEffect, useState} from 'react';
+import React, {useRef, useEffect, useLayoutEffect, useState} from 'react';
 import './App.css';
 import HeaderSection from './Header/HeaderSection';
 import ServicesSection from './Services/servicesSection';
@@ -10,7 +10,7 @@ import Footer from './Footer/footer';
 import ReactGA from 'react-ga';
 import WhatsAppButton from './whatsAppSection';
 
-const TRACKING_ID = process.env.REACT_APP_GOOGLE_ANALYTICS_KEY; // Replace with your tracking ID
+const TRACKING_ID = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_KEY; // Replace with your tracking ID
 ReactGA.initialize(TRACKING_ID);
 
 
@@ -20,32 +20,34 @@ function App() {
   }, []);
 
   const [sectionHeight, setSectionHeight] = useState(0);
+  const [isClient, setIsClient] = useState(false);
 
+  const navbarRef = useRef(null);
   const homeSectionRef = useRef(null);
   const aboutSectionRef = useRef(null);
   const servicesSectionRef = useRef(null);
   const reviewsSectionRef = useRef(null);
   const contactSectionRef = useRef(null);
 
+  useEffect(() => {
+    setIsClient(true);
+  }, [])
+
   const scrollToSection = (section) => {
-    const navbarHeight = document.querySelector('#navigation-bar').offsetHeight; // Get navbar height
+    if(!isClient) return; //Ensures client is running so no SSR errors
+    
     let sectionRef;
+    if (section === 'homeSection')  sectionRef = homeSectionRef;
+    else if (section === 'aboutSection') sectionRef = aboutSectionRef; 
+    else if (section === 'servicesSection') sectionRef = servicesSectionRef; 
+    else if (section === 'reviewsSection') sectionRef = reviewsSectionRef; 
+    else if (section === 'contactSection') sectionRef = contactSectionRef; 
 
-    if (section === 'homeSection') {
-      sectionRef = homeSectionRef;
-    } else if (section === 'aboutSection') {
-      sectionRef = aboutSectionRef;
-    } else if (section === 'servicesSection') {
-      sectionRef = servicesSectionRef;
-    } else if (section === 'reviewsSection') {
-      sectionRef = reviewsSectionRef;
-    } else if (section === 'contactSection') {
-      sectionRef = contactSectionRef;
-    } 
 
-    if (sectionRef && sectionRef.current) {
+    if (sectionRef?.current && typeof window !== undefined) {
+       // Get navbar height
       const sectionPosition = sectionRef.current.getBoundingClientRect().top; // Position relative to the viewport
-      const offsetPosition = window.scrollY + sectionPosition - navbarHeight; // Adjust for navbar
+      const offsetPosition = window.scrollY + sectionPosition - navbarRef.current.offsetHeight; // Adjust for navbar
 
       // Manually scroll to section
       window.scrollTo({
@@ -54,20 +56,19 @@ function App() {
       });
     }
   };
-
+  
+  // Get the height of the section after component mounts
   useEffect(() => {
-    // Get the height of the section after component mounts
-    if (homeSectionRef.current) {
-      setSectionHeight(homeSectionRef.current.offsetHeight);
+    if (navbarRef.current && homeSectionRef.current) {
+      setSectionHeight(homeSectionRef.current.offsetHeight - navbarRef.current.offsetHeight);
     }
   }, []);
 
   return (
     <div className="App">
       <div className="content-wrapper">
-      <body>
         <header ref={homeSectionRef} className="App-header">
-          <HeaderSection headerHeight={sectionHeight} scrollIntoView={scrollToSection}/>
+          <HeaderSection ref={navbarRef} headerHeight={sectionHeight} scrollIntoView={scrollToSection}/>
         </header>
         <WhatsAppButton />
         <section ref={aboutSectionRef}>
@@ -88,7 +89,6 @@ function App() {
         <section>
           <Footer scrollIntoView={scrollToSection}/>
         </section>
-      </body>
       </div>
     </div>
   );

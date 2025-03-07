@@ -19,9 +19,9 @@ const Slideshow = () => {
         // Function to update the image source based on window width
         const updateImageSrc = () => {
           if (window.innerWidth > 768) {
-            setImageSrc([mainSlidePicture, mainSlidePicture2, mainSlidePicture3, mainSlidePicture4, mainSlidePicture5]); // Directory for larger screens
+            setImageSrc([mainSlidePicture.src, mainSlidePicture2.src, mainSlidePicture3.src, mainSlidePicture4.src, mainSlidePicture5.src]); // Directory for larger screens
           } else {
-            setImageSrc([phoneSlidePicture1, phoneSlidePicture2, phoneSlidePicture3, phoneSlidePicture4]); // Directory for smaller screens
+            setImageSrc([phoneSlidePicture1.src, phoneSlidePicture2.src, phoneSlidePicture3.src, phoneSlidePicture4.src]); // Directory for smaller screens
           }
         };
         // Initial call to set image source

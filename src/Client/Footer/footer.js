@@ -9,7 +9,7 @@ const Footer = ({scrollIntoView}) => {
       <div className="footer-content">
         {/* Company Logo */}
         <div className="footer-logo">
-          <img src={logo} alt="Company Logo" />
+          <img src={logo.src} alt="Company Logo" />
         </div>
 
         {/* Footer Menu */}

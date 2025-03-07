@@ -31,12 +31,12 @@ function ServicesSection(){
             <div className="services-container">
                 <h2 className="services-heading">Our Services</h2>
                 <div className="services-grid">
-                    <SingleService title='Local Moving' description={localMovingDesc} image={localImg}/>
-                    <SingleService title='Long-Distance Moving' description={longDistanceDesc} image={longDistImg} />
-                    <SingleService title='Packing Services' description={packingServicesDesc} image={packImg} />
-                    <SingleService title='Storage Solutions' description={storageSolutionsDesc} image={storageImg} />
-                    <SingleService title='Junk Removal' description={junkRemovalDesc} image={junkImg} />
-                    <SingleService title='Specialty Item Moving' description={specialtyItemDesc} image={specialtyImg} />                        
+                    <SingleService title='Local Moving' description={localMovingDesc} image={localImg.src}/>
+                    <SingleService title='Long-Distance Moving' description={longDistanceDesc} image={longDistImg.src} />
+                    <SingleService title='Packing Services' description={packingServicesDesc} image={packImg.src} />
+                    <SingleService title='Storage Solutions' description={storageSolutionsDesc} image={storageImg.src} />
+                    <SingleService title='Junk Removal' description={junkRemovalDesc} image={junkImg.src} />
+                    <SingleService title='Specialty Item Moving' description={specialtyItemDesc} image={specialtyImg.src} />                        
                 </div>
             </div>
         </div>

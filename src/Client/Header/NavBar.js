@@ -1,11 +1,11 @@
-import React, {useState, useRef, useEffect} from 'react';
+import React, {useState, useRef, useEffect, forwardRef} from 'react';
 import { Link } from 'react-router-dom';
 import './Navbar.css';
 import logo from '../../Pictures/stoneHandsMovingLogo.png'
 import SocialMediaLinks from '../../socialMedia';
 import MenuOptions from '../../menuOptions';
 
-const Navbar = ({headerHeight, scrollIntoView}) => {
+const Navbar = forwardRef(({headerHeight, scrollIntoView}, navbarRef) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const menuRef = useRef(null);
@@ -41,9 +41,9 @@ const Navbar = ({headerHeight, scrollIntoView}) => {
   };
 
   return (
-    <nav id="navigation-bar" className="navbar">
+    <nav id="navigation-bar" ref={navbarRef} className="navbar">
       <div className="navbar-logo">
-        <Link to="/"><img src={logo} alt='stone-hands-moving-logo' /></Link>
+        <Link to="/"><img src={logo.src} alt='stone-hands-moving-logo' /></Link>
       </div>
       <div ref={menuRef} className={`sticky-menu ${isVisible ? 'visible' : ''}`}>
         <MenuOptions scrollIntoView={scrollIntoView} />
@@ -69,6 +69,6 @@ const Navbar = ({headerHeight, scrollIntoView}) => {
       {isMenuOpen && <div className="overlay" onClick={toggleMenu}></div>}
     </nav>
   );
-};
+});
 
 export default Navbar;
