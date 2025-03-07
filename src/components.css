@@ -55,7 +55,6 @@ button:hover {
 }
 
 .social-media-links {
-    padding-right: 1em;
     display: flex;
     justify-content: center;
     align-items: center;

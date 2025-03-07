@@ -11,6 +11,10 @@
     padding: 10px 20px;
     z-index: 1000; /* Ensures the navbar stays on top of other elements */
   }
+
+  .navbar-logo{
+    padding-left: 2em;
+  }
   
   .navbar-logo img {
     padding-left: 1rem;
@@ -105,7 +109,7 @@
 }
 
 .sticky-menu{
-  margin: 0 1rem;
+  margin: 0 1em;
   justify-content: center; /* Initially absolute at the bottom of the section */
   background-color: #f8f8f8;
   border-radius: 20px;
@@ -118,10 +122,10 @@
 
 .sticky-menu.visible{
   opacity: 1;
-  visibility: visible; /* Ensures it's no longer clickable */
+  visibility: visible; /* Ensures it's clickable */
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1080px) {
   .menu-button{
     font-size: 1.8rem;
     visibility: visible;
