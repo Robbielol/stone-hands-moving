@@ -18,8 +18,11 @@ const logFile = fs.createWriteStream('server.log', { flags: 'a' });
 const logStdout = process.stdout;
 
 console.log = function (...args) {
-  logFile.write(util.format(...args) + '\n');
-  logStdout.write(util.format(...args) + '\n');
+  const timestamp = new Date().toISOString(); // Get current timestamp
+  const logMessage = `[${timestamp}] ${util.format(...args)}`; // Format log message
+
+  logFile.write(logMessage + '\n'); // Write to file
+  logStdout.write(logMessage + '\n'); // Write to console
 };
 
 app.use(cors(({

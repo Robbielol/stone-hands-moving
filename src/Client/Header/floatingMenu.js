@@ -8,6 +8,8 @@ const FloatingMenu = ({scrollIntoView}) => {
     const lastScrollY = useRef(0); // To store the last scroll position
 
     useEffect(() => {
+      if(typeof window === 'undefined') return;
+
       const handleScroll = () => {
         const currentScrollY = window.scrollY;
         const menu = menuRef.current;
@@ -27,7 +29,6 @@ const FloatingMenu = ({scrollIntoView}) => {
       };
   
       window.addEventListener('scroll', handleScroll);
-  
       return () => {
         window.removeEventListener('scroll', handleScroll);
       };

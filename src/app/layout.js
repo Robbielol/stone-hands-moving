@@ -1,4 +1,3 @@
-import { Metadata } from 'next'
 
 export const metadata = {
     title: 'Stonehands Moving | Best Movers In Vancouver',
