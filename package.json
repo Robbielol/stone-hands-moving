@@ -4,10 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "start": "concurrently \"npm run dev\" \"npm run server\"",
-    "client": "next start",
-    "server": "cd Server && node server.js",
-    "build": "next build"
+    "build": "next build",
+    "start": "next start",
+    "server": "cd Server && node server.js"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.6.0",
