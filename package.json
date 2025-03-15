@@ -5,8 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    "server": "cd Server && node server.js"
+    "start": "concurrently \"npm run dev\" \"npm run server\" ",
+    "server": "node Server.js"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.6.0",
@@ -24,7 +24,7 @@
     "express": "^4.21.0",
     "install": "^0.13.0",
     "lodash.debounce": "^4.0.8",
-    "next": "^15.2.1",
+    "next": "^15.2.2",
     "nodemailer": "^6.9.15",
     "npm": "^10.9.0",
     "react": "^18.3.1",
@@ -33,7 +33,7 @@
     "react-helmet": "^6.1.0",
     "react-icons": "^5.3.0",
     "react-router-dom": "^6.26.2",
-    "react-scripts": "5.0.1",
+    "react-scripts": "^3.0.1",
     "web-vitals": "^2.1.4"
   },
   "eslintConfig": {
@@ -53,6 +53,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "proxy": "http://localhost:4001"
+  }
 }
