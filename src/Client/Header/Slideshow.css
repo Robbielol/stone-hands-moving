@@ -2,7 +2,7 @@
   .slideshow-wrapper {
     visibility: visible;
     position: relative;
-    width: 100%;
+    width: 100vw;
     height: auto; /* Fixed height for the slideshow */
     /*overflow: hidden; /* Hide overflow for the sliding effect */
   }
@@ -14,7 +14,7 @@
   
   /* Slideshow container - full width and fixed height */
   .slideshow-container {
-    width: 100%;
+    width: 90vw;
     height: auto;
     display: flex;
     transition: transform 1s ease-in-out;
@@ -22,7 +22,7 @@
   
   /* Each individual slide */
   .slide {
-    min-width: 100%; /* Take up 100% of the width */
+    min-width: 90vw; /* Take up 100% of the width */
     height: auto; /* Fixed height */
     transition: opacity 1s ease-in-out; /* Smooth fade between slides */
     opacity: 0;
@@ -50,13 +50,9 @@
       padding: 10px;
       /*overflow: hidden; */
     }
-
-    .slide{
-      width: 100vw;
-    }
   
     .slide img {
-      width: 100%;
+      width: 90vw;
       height: 1000px; /* Automatically adjust for smaller screens */
       max-height: 90vh; /* Further height limit on mobile */
       object-fit: cover;

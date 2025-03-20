@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 // import { LoadScript, Autocomplete } from "@react-google-maps/api";
 import axios from 'axios';
 import './contactForm.css';
@@ -18,8 +18,11 @@ const ContactSection = () => {
   //const [destAutocomplete, setDestAutocomplete] = useState(null);
   //const [destAddress, setDestAddress] = useState("");
   const [status, setStatus] = useState('');
-
-  const today = new Date().toISOString().split("T")[0];
+  const [today, setToday] = useState('');
+  
+  useEffect(() => {
+    setToday(new Date().toISOString().split("T")[0]);
+  },[])
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -52,7 +55,6 @@ const ContactSection = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      console.log(formData)
       const response = await axios.post('/api/send-email', formData);
       if (response.data.success) {
         setStatus('Message sent successfully!');

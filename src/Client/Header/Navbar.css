@@ -16,6 +16,7 @@
     padding: 1em;
     z-index: 1000; /* Ensures the navbar stays on top of other elements */
   }
+
   .navbar-logo{
     padding-left: 3.5em;
     padding-right: 1em;
@@ -167,6 +168,10 @@
 @media (max-width: 768px) {
     .menu-button{
       font-size: 1.5em;
+    }
+
+    .navbar-logo{
+      padding-left: 1em;
     }
 
     .navbar-logo img{

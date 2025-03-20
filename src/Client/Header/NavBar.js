@@ -10,13 +10,11 @@ const Navbar = ({headerHeight, scrollIntoView}) => {
   const [isVisible, setIsVisible] = useState(false);
   const menuRef = useRef(null);
   const lastScrollY = useRef(0); // To store the last scroll position
-
+  
   useEffect(() => {
-    if(typeof window === 'undefined') return;
 
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      
       // When scrolling down, show the menu if it's within 70px from the top NEEDS TO BE CHANGED TO DYNAMIC VALUE
       if (currentScrollY > headerHeight) {
         setIsVisible(true);

@@ -16,7 +16,6 @@ const Slideshow = () => {
     const [imageSrc, setImageSrc] = useState([]);
 
     useEffect(() => {
-        if(typeof window === 'undefined') return;
         
         // Function to update the image source based on window width
         const updateImageSrc = () => {
