@@ -11,6 +11,8 @@ const ContactSection = () => {
     number: '',
     email: '',
     date: '',
+    origin: '',
+    destination: '',
     workloadDescription: ''
   });
  // const [originAutocomplete, setOriginAutocomplete] = useState(null);
@@ -58,7 +60,7 @@ const ContactSection = () => {
       const response = await axios.post('/api/send-email', formData);
       if (response.data.success) {
         setStatus('Message sent successfully!');
-        setFormData({ fullName: '', name: '', email: '', date: '', origin: '', destination: '', workloadDescription: '' });
+        setFormData({ fullName: '', number: '', email: '', date: '', origin: '', destination: '', workloadDescription: '' });
         // setOriginAddress('');
         // setDestAddress('');
       } else {
@@ -99,14 +101,14 @@ const ContactSection = () => {
             <div className="form-group">
               <label htmlFor="number">Phone Number</label>
               <input
-                  type="tel"
-                  id="number"
-                  name="number"
-                  value={formData.number}
-                  placeholder='Enter in phone number'
-                  pattern='[0-9]{10}'
-                  onChange={handleChange}
-                  title="Enter a 10-digit phone number"
+                type="tel"
+                id="number"
+                name="number"
+                value={formData.number}
+                placeholder='Enter in phone number'
+                pattern='[0-9]{10}'
+                onChange={handleChange}
+                title="Enter a 10-digit phone number"
               />
             </div>
 
@@ -142,11 +144,11 @@ const ContactSection = () => {
                 onPlaceChanged={onOriginPlaceSelected}
               > */}
                 <div className="form-group">
-                  <label htmlFor="from">Move From Location</label>
+                  <label htmlFor="from">Origin Address</label>
                   <input
                       type="text"
-                      id="moveFrom"
-                      name="moveFrom"
+                      id="origin"
+                      name="origin"
                       placeholder="Enter the starting address"
                       value={formData.origin}
                       onChange={handleChange}
@@ -160,11 +162,11 @@ const ContactSection = () => {
                 onPlaceChanged={onDestPlaceSelected}
               > */}
                 <div className="form-group">
-                  <label htmlFor="to">Move To Location</label>
+                  <label htmlFor="to">Destination Address</label>
                   <input
                       type="text"
-                      id="moveTo"
-                      name="moveTo"
+                      id="destination"
+                      name="destination"
                       placeholder="Enter the destination address"
                       value={formData.destination}
                       onChange={handleChange}
@@ -182,7 +184,7 @@ const ContactSection = () => {
                   rows="5"
                   value={formData.workloadDescription}
                   onChange={handleChange}
-                  placeholder="Describe the size of the move, special requirements, etc."
+                  placeholder="Describe the size of the move, special requirements, etc..."
                   required
               />
             </div>

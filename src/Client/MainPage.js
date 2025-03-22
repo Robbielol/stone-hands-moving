@@ -37,8 +37,9 @@ function App() {
 
   const scrollToSection = (section) => {
     if(!isClient) return; //Ensures client is running so no SSR errors
-    console.log('here', section)
+
     let sectionRef;
+    
     if (section === 'homeSection')  sectionRef = homeSectionRef;
     else if (section === 'aboutSection') sectionRef = aboutSectionRef; 
     else if (section === 'servicesSection') sectionRef = servicesSectionRef; 

@@ -39,7 +39,7 @@ server.use(cors({
   }
 }));
 
-server.use(express.json()); // No need for bodyParser.json() as express already supports this
+server.use(express.json()); 
 
 // Endpoints
 server.get('/api/read-reviews', async (req, res) => {
@@ -105,7 +105,7 @@ server.post('/api/send-email', async (req, res) => {
     res.status(500).json({ success: false, message: 'Internal Server Error' });
     return;
   }
-  const { fullName, phoneNumber, email, date, origin, destination, workloadDescription } = req.body;
+  const { fullName, number, email, date, origin, destination, workloadDescription } = req.body;
   try {
     let transporter = nodemailer.createTransport({
       host: process.env.SHM_APP_SMTP_HOST,
@@ -122,11 +122,16 @@ server.post('/api/send-email', async (req, res) => {
       },
     });
     let mailOptions = {
-      from: email,
+      from: process.env.SHM_APP_SMTP_USER,
       to: process.env.SHM_APP_SMTP_USER,
-      subject: `New moving request from ${fullName} on ${date}`,
-      html: `<p><strong>${fullName}</strong> wants to employ you for a moving job on this date <strong>${date}</strong>.</p>`,
       replyTo: email,
+      subject: `New moving request from ${fullName} on ${date}`,
+      html: `<p><strong>${fullName}</strong> wants to employ you for a moving job on the <strong>${date}</strong></p>.
+            <p>Origin: ${origin}</p>
+            <p>Destination: ${destination}</p>
+            <p>Description: ${workloadDescription}</p>
+            <p> Phone No: ${number}</p>
+            <p>By clicking reply to this email, the customer email will automatically populate the "To" field.</p>`,            
     };
 
     await transporter.sendMail(mailOptions);
