@@ -6,9 +6,38 @@ export const metadata = {
 
 
 export default function RootLayout({ children }) {
+    const websiteSchema = {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Stonehands Moving",
+        "url": "https://stonehandsmoving.com",
+        "description": "Expert moving company and piano movers",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://stonehandsmoving.com/search?q={moving company}",
+          "query-input": "required name=moving company"
+        }
+    };
+    
+    const organizationSchema = {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Stonehands Moving",
+        "url": "https://stonehandsmoving.com",
+        "logo": "https://stonehandsmoving.com/stoneHandsMovingLogo.png",
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+16048284860",
+          "contactType": "customer service"
+        }
+    };
+
     return (
         <html lang="en">
         <head>
+            <script type="application/ld+json">
+            {JSON.stringify([websiteSchema, organizationSchema])}
+            </script>
             <meta name='keywords' content='best moving company, Pianos, Vancouver, North Vancouver, Burnaby, Surrey, Richmond, 
             Coquitlam, West Vancouver'/>
             <meta property="og:title" content="Best Professional Moving Services in Vancouver | Free Quotes" />
