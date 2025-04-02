@@ -64,7 +64,7 @@ function App() {
   //Get the height of the section after component mounts
   useEffect(() => {
     if (!navbarRef.current || !homeSectionRef.current) return; // Ensure ref is not null before running
-    
+    console.log('ref',homeSectionRef.current.offsetHeight)
     setSectionHeight(homeSectionRef?.current.offsetHeight - navbarRef?.current.offsetHeight);
   }, []);
   
