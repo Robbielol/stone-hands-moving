@@ -3,7 +3,6 @@ const express = require('express');
 const nodemailer = require('nodemailer');
 const axios = require('axios');
 const cors = require('cors');
-const bodyParser = require('body-parser');
 const next = require('next');
 const fs = require('fs');
 const path = require('path');

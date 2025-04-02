@@ -1,6 +1,6 @@
 
 export const metadata = {
-    title: 'Stonehands Moving Company | Best Movers In Vancouver',
+    title: 'Stonehands Moving | Best Moving Company',
     description: 'Hire the best moving company in British Coloumbia for stress-free home or residential moves. Specializing in Piano moving.',
 }
 
@@ -36,9 +36,9 @@ export default function RootLayout({ children }) {
         <html lang="en">
         <head>
             <script type="application/ld+json">
-            {JSON.stringify([websiteSchema, organizationSchema])}
+                {JSON.stringify([websiteSchema, organizationSchema])}
             </script>
-            <meta name='keywords' content='best moving company, Pianos, Vancouver, North Vancouver, Burnaby, Surrey, Richmond, 
+            <meta name='keywords' content='Moving Pianos, Vancouver, North Vancouver, Burnaby, Surrey, Richmond, 
             Coquitlam, West Vancouver'/>
             <meta property="og:title" content="Best Professional Moving Services in Vancouver | Free Quotes" />
             <meta property="og:image" content="https://stonehandsmoving.com/Pictures/stoneHandsMovingLogo.ico" />

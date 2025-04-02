@@ -9,13 +9,13 @@ import ServicesSection from './Services/servicesSection';
 import ReviewsSection from './Reviews/reviewsSection';
 import Footer from './Footer/footer';
 import AboutSection from './About/aboutSection';
+import ContactSection from './Contact/contactSection';
 import ReactGA from 'react-ga';
 
 const TRACKING_ID = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_KEY; // Replace with your tracking ID
 const FloatingMenu = dynamic(() => import('./Header/floatingMenu'), { ssr: false });
 const Navbar = dynamic(() => import('./Header/NavBar'), {ssr: false });
 const HeaderSection = dynamic(() => import('./Header/HeaderSection'), { ssr: false });
-const ContactSection = dynamic(() => import('./Contact/contactSection'), { ssr: false });
 
 function App() {
   const [sectionHeight, setSectionHeight] = useState(0);
