@@ -57,11 +57,11 @@ const Navbar = ({headerHeight, scrollIntoView}) => {
         {/* Pop-out menu container for mobile*/}
         <div className={`nav-menu ${isMenuOpen ? 'open' : ''}`}>
           <ul>
-            <li onClick={() => {scrollIntoView("homeSection"); toggleMenu();}}><a href="#home">Home</a></li>
-            <li onClick={() => {scrollIntoView("aboutSection"); toggleMenu();}}><a href="#about">About</a></li>
-            <li onClick={() => {scrollIntoView("servicesSection"); toggleMenu();}}><a href="#services">Services</a></li>
-            <li onClick={() => {scrollIntoView("reviewsSection"); toggleMenu();}}><a href="#reviews">Reviews</a></li>
-            <li onClick={() => {scrollIntoView("contactSection"); toggleMenu();}}><a href="#contact">Contact</a></li>
+            <li onClick={() => {scrollIntoView("homeSection"); toggleMenu();}}><a href="/home">Home</a></li>
+            <li onClick={() => {scrollIntoView("aboutSection"); toggleMenu();}}><a href="/about">About</a></li>
+            <li onClick={() => {scrollIntoView("servicesSection"); toggleMenu();}}><a href="/services">Services</a></li>
+            <li onClick={() => {scrollIntoView("reviewsSection"); toggleMenu();}}><a href="/reviews">Reviews</a></li>
+            <li onClick={() => {scrollIntoView("contactSection"); toggleMenu();}}><a href="/contact">Contact</a></li>
           </ul>
           <SocialMediaLinks/>
         </div>

@@ -5,7 +5,7 @@ import TeamPicture from "../../Pictures/Team.jpeg"
 function AboutSection(){
     return(
         <div className="section-container">
-            <h1 className="section-title">All About Stonehands Moving Company</h1>
+            <h1 className="section-title">Stonehands Moving</h1>
             <div className="content-container">
                 <img src={TeamPicture.src} alt='stonehands moving team' className="section-image"/>
                 <div className="section-text">

@@ -2,9 +2,12 @@ import React, {useRef, useEffect, useState} from 'react';
 import dynamic from 'next/dynamic';
 import './App.css';
 import './Header/Navbar.css'
+import "./Header/header.css"
+import '../components.css'
 import WhatsAppButton from './whatsAppSection'
 import ServicesSection from './Services/servicesSection';
 import ReviewsSection from './Reviews/reviewsSection';
+import Footer from './Footer/footer';
 import AboutSection from './About/aboutSection';
 import ReactGA from 'react-ga';
 
@@ -13,7 +16,6 @@ const FloatingMenu = dynamic(() => import('./Header/floatingMenu'), { ssr: false
 const Navbar = dynamic(() => import('./Header/NavBar'), {ssr: false });
 const HeaderSection = dynamic(() => import('./Header/HeaderSection'), { ssr: false });
 const ContactSection = dynamic(() => import('./Contact/contactSection'), { ssr: false });
-const Footer = dynamic(() => import('./Footer/footer'), { ssr: false });
 
 function App() {
   const [sectionHeight, setSectionHeight] = useState(0);

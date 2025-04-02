@@ -1,62 +1,56 @@
-/* Slideshow wrapper to contain both logo and slideshow */
+/* Base styles */
+.slideshow-wrapper {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+}
+
+.slideshow-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.slide.active {
+  opacity: 1;
+}
+
+.image-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* Mobile-specific fixes */
+@media (max-width: 768px) {
   .slideshow-wrapper {
-    visibility: visible;
-    position: relative;
     width: 100vw;
-    height: auto; /* Fixed height for the slideshow */
-    /*overflow: hidden; /* Hide overflow for the sliding effect */
-  }
-
-  .phone-slideshow-wrapper{
-    display: none;
-    visibility: hidden;
-  }
-  
-  /* Slideshow container - full width and fixed height */
-  .slideshow-container {
-    width: 90vw;
     height: auto;
-    display: flex;
-    transition: transform 1s ease-in-out;
-  }
-  
-  /* Each individual slide */
-  .slide {
-    min-width: 90vw; /* Take up 100% of the width */
-    height: auto; /* Fixed height */
-    transition: opacity 1s ease-in-out; /* Smooth fade between slides */
-    opacity: 0;
-    position: absolute; /* Layering slides on top of each other */
-  }
-  
-  .slide.active {
-    opacity: 1;
-    position: relative;
-    transition: opacity 1s ease-in-out;
-  }
-  
-  /* Ensure images are full width and height */
-  .slide img {
-    width: 100vw;
-    height: 100vh;
-    object-fit: cover; /* Ensure images maintain aspect ratio and cover the area */
+    min-height: 60vh; /* Ensures minimum height */
+    aspect-ratio: 9/16; /* Common mobile aspect ratio */
   }
 
-  @media (max-width: 768px){
-    .slideshow-wrapper {
-      width: 100%;
-      max-width: 600px;
-      margin: auto;
-      padding: 10px;
-      /*overflow: hidden; */
-    }
-  
-    .slide img {
-      width: 90vw;
-      height: 1000px; /* Automatically adjust for smaller screens */
-      max-height: 90vh; /* Further height limit on mobile */
-      object-fit: cover;
-      object-position: center;
-      border-radius: 20px; /* Rounded edges for individual images */
-    }
+  .slideshow-container {
+    width: 100%;
+    height: 100%;
   }
+
+  /* Ensure image container has dimensions */
+  .slide .image-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+}

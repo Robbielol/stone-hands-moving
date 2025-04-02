@@ -1,8 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router} from 'react-router-dom';
 import logo from '../../Pictures/stoneHandsMoving.png'
-import "./header.css"
-import '../../components.css'
 import Slideshow from './slideshow';
 
 const HeaderSection = ({scrollIntoView}) => {
